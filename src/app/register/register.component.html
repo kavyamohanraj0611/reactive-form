@@ -1,0 +1,34 @@
+<form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+    <label><b>Full Name</b></label><br>
+    <input type="text" formControlName="fullname" (change)="trackChange()"><br>
+    <span *ngIf="fullname.hasError('required') && fullname.touched" class="error"><small>Fullname is required</small></span>
+    <span *ngIf="fullname.hasError('pattern')" class="error"><small>Fullname must contain only alphabets</small></span>
+    <br><br>
+    <label><b>Age</b></label><br>
+    <input type="number" formControlName="age"><br>
+    <span *ngIf="age.hasError('required') && age.touched" class="error"><small>Age is required</small></span>
+    <span *ngIf="age.hasError('min') && age.touched" class="error"><small>Age must be greater than 18</small></span>
+    <span *ngIf="age.hasError('max') && age.touched" class="error"><small>must be less than 60</small></span>
+    <br><br>
+    <label for="gender"><b>Gender</b></label><br>
+    <input type="radio" formControlName="gender" value="male">Male
+    <input type="radio" formControlName="gender" value="female">Female<br>
+    <span *ngIf="gender.hasError('required') && department.touched" class="error"><small>Please select your gender</small></span>
+    <br><br>
+    <label><b>Department</b></label><br>
+    <select formControlName="department">
+        <option value="">Select the option</option>
+        <option value="ECE">ECE</option>
+        <option value="EEE">EEE</option>
+        <option value="CSE">CSE</option>
+        <option value="IT">IT</option>
+        <option value="Mech">Mech</option>
+    </select><br>
+    <span *ngIf="department.hasError('required') && department.touched" class="error"><small>Please select your department</small></span>
+    <br><br>
+    <label><b>Role</b></label><br>
+    <input type="text" formControlName="role"><br><br><br>
+    <button (click)="success()">Submit</button>
+    <button class="btn" (click)="resetForm()">Reset</button>
+</form>
+
